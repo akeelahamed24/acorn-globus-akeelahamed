@@ -91,9 +91,19 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', sans-serif;
-  }
+      @apply bg-background text-foreground font-sans antialiased;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      height: 100vh;
+      background-color: #E2E2E4; /* Fallback color */
+      background: radial-gradient(
+        circle at center,
+        #F3F3F3 0%,
+        #E2E2E4 60%,
+        #DAD9DD 100%
+      );
+      background-attachment: fixed;
+    }
 }
 
 @layer components {
@@ -150,4 +160,17 @@
   .avatar-stack > * {
     @apply ring-2 ring-white;
   }
+}
+
+.sidebar-item {
+  @apply flex items-center gap-2 px-2 h-9 rounded-lg text-sm text-muted-foreground
+         hover:bg-neutral-100 hover:text-foreground transition;
+}
+
+.sidebar-item-active {
+  @apply bg-white text-foreground shadow-sm;
+}
+
+.sidebar-section {
+  @apply px-2 pt-4 text-[11px] font-medium uppercase text-muted-foreground;
 }

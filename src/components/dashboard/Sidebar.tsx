@@ -1,191 +1,220 @@
-import { Home, Star, Clock, List, Target, LayoutDashboard, Users, Box, Hash, Type, FlaskConical, ChevronDown, Share2, FileText, BarChart3, Mail, Plus, Settings, Folder, ChevronRight, Layers, Command, Grid3X3 } from "lucide-react";
+import {
+  Star,
+  RotateCcw,
+  ChevronDown,
+  MessageCircle,
+  Settings,
+  Folder,
+  Plus,
+} from "lucide-react";
 import { useState } from "react";
 
 const Sidebar = () => {
-  const [expandedSections, setExpandedSections] = useState<string[]>(["codename", "reports", "myReports"]);
+  const [open, setOpen] = useState({
+    shared: true,
+    reportsShared: true,
+    myReports: true,
+  });
 
-  const toggleSection = (section: string) => {
-    setExpandedSections((prev) =>
-      prev.includes(section) ? prev.filter((s) => s !== section) : [...prev, section]
-    );
-  };
+  const toggle = (key: keyof typeof open) =>
+    setOpen((p) => ({ ...p, [key]: !p[key] }));
+
+  // Base item (now medium weight)
+  const item =
+    "flex items-center gap-2 h-8 px-2 rounded-md text-[12px] font-medium text-neutral-700 hover:bg-neutral-100 transition";
+
+  // Section headers
+  const strongItem = `${item} text-neutral-900 font-semibold`;
+
+  // Active item
+  const activeStrong = "bg-neutral-100 text-neutral-900 font-semibold";
+
+  // Tree styles
+  const treeGroup = "ml-3 space-y-0.5 border-l border-neutral-300";
+  const treeItem =
+    "relative pl-7 font-medium before:absolute before:left-3 before:top-1/2 before:w-2 before:h-px before:bg-neutral-400";
 
   return (
-    <aside className="w-72 h-screen flex bg-gradient-to-b from-[hsl(350,40%,97%)] via-[hsl(340,25%,95%)] to-[hsl(330,20%,93%)]">
-      {/* Icon Bar */}
-      <div className="w-14 flex flex-col items-center py-4 bg-gradient-to-b from-[hsl(350,35%,96%)] to-[hsl(340,30%,94%)]">
-        {/* Logo */}
-        <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center mb-6">
-          <span className="text-primary-foreground font-bold text-lg">C</span>
+    <aside className="flex h-screen w-[320px] bg-transparent">
+      {/* ICON BAR */}
+      <div className="w-14 flex flex-col items-center py-4">
+        <div className="w-9 h-9 rounded-full bg-black text-white flex items-center justify-center font-semibold mb-6">
+          C
         </div>
 
-        {/* Icon Navigation */}
-        <div className="flex flex-col items-center gap-3">
-          <button className="w-10 h-10 rounded-xl flex items-center justify-center text-muted-foreground hover:bg-white/50 transition-colors">
-            <Home className="w-5 h-5" />
-          </button>
-          <button className="w-10 h-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center">
-            <Layers className="w-5 h-5" />
-          </button>
-          <button className="w-10 h-10 rounded-xl flex items-center justify-center text-muted-foreground hover:bg-white/50 transition-colors">
-            <Grid3X3 className="w-5 h-5" />
-          </button>
-          <button className="w-10 h-10 rounded-xl flex items-center justify-center text-muted-foreground hover:bg-white/50 transition-colors">
-            <Command className="w-5 h-5" />
-          </button>
+        <div className="flex flex-col gap-3">
+          {[
+            "/icon-1.png",
+            "/icon-2.png",
+            "/icon-3.png",
+            "/icon-4.png",
+            "/icon-5.png",
+          ].map((src, i) => (
+            <button
+              key={i}
+              className={`w-10 h-10 rounded-full overflow-hidden flex items-center justify-center ${
+                i === 1 ? "ring-2 ring-rose-500/40" : "hover:bg-black/5"
+              }`}
+            >
+              <img
+                src={src}
+                alt={`icon-${i}`}
+                className="w-full h-full object-cover"
+              />
+            </button>
+          ))}
         </div>
 
-        {/* Bottom Icons */}
-        <div className="mt-auto flex flex-col items-center gap-3">
-          <div className="w-2 h-2 rounded-full bg-primary" />
-          <button className="w-10 h-10 rounded-xl flex items-center justify-center text-muted-foreground hover:bg-white/50 transition-colors">
-            <Settings className="w-5 h-5" />
+        <div className="mt-auto flex flex-col items-center gap-3 pb-2">
+          <button className="relative w-10 h-10 rounded-full flex items-center justify-center hover:bg-black/5">
+            <MessageCircle className="w-4 h-4 text-neutral-500" />
+            <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-rose-500 ring-2 ring-white" />
           </button>
-          <button className="w-10 h-10 rounded-xl flex items-center justify-center text-muted-foreground hover:bg-white/50 transition-colors">
-            <Settings className="w-5 h-5" />
+
+          <span className="w-1.5 h-1.5 rounded-full bg-neutral-400" />
+
+          <button className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-black/5">
+            <Settings className="w-4 h-4 text-neutral-500" />
           </button>
         </div>
       </div>
 
-      {/* Main Sidebar Content */}
+      {/* MAIN SIDEBAR */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Header */}
-        <div className="p-4 flex items-center gap-2">
-          <span className="text-foreground font-semibold text-sm">Codename.com</span>
-          <ChevronDown className="w-4 h-4 text-muted-foreground" />
+        {/* HEADER */}
+        <div className="h-12 px-4 flex items-center gap-2">
+          <span className="text-[15px] font-bold text-neutral-900">
+            Codename.com
+          </span>
+          <ChevronDown className="w-4 h-4 text-neutral-500" />
         </div>
 
-        {/* Navigation */}
-        <nav className="flex-1 px-3 py-2 space-y-0.5 overflow-y-auto">
-          <div className="sidebar-nav-item">
-            <Star className="w-4 h-4" />
-            <span className="text-sm">Starred</span>
-          </div>
-          <div className="sidebar-nav-item">
-            <Clock className="w-4 h-4" />
-            <span className="text-sm">Recent</span>
-          </div>
-          <div className="sidebar-nav-item">
-            <List className="w-4 h-4" />
-            <span className="text-sm">Sales list</span>
-          </div>
-          <div className="sidebar-nav-item">
-            <Target className="w-4 h-4" />
-            <span className="text-sm">Goals</span>
-          </div>
-          <div className="sidebar-nav-item sidebar-nav-item-active">
-            <LayoutDashboard className="w-4 h-4" />
-            <span className="text-sm">Dashboard</span>
+        <nav className="flex-1 px-3 py-2 overflow-y-auto scrollbar-hide">
+          {/* TOP */}
+          <div className="space-y-1">
+            <div className={`${item} text-gray-500`}>
+              <Star className="w-3.5 h-3.5" /> Starred
+            </div>
+
+            <div className={`${item} text-gray-500`}>
+              <RotateCcw className="w-3.5 h-3.5" /> Recent
+            </div>
+
+            <div className={strongItem}>Sales list</div>
+            <div className={strongItem}>Goals</div>
+
+            <div className={`${item} ${activeStrong}`}>
+              Dashboard
+              <Plus className="ml-auto w-3.5 h-3.5 text-neutral-500" />
+            </div>
           </div>
 
-          {/* Codename Section */}
-          <div className="pt-4">
-            <button
-              onClick={() => toggleSection("codename")}
-              className="flex items-center gap-2 px-2 py-1.5 w-full text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <span className="text-xs font-medium">Codename</span>
-              <Plus className="w-3 h-3 ml-auto" />
+          {/* DASHBOARD TREE */}
+          <div className={treeGroup}>
+            <div className={`${item} font-semibold`}>Codename</div>
+
+            <button onClick={() => toggle("shared")} className={`${item} font-semibold`}>
+              Shared with me
+              <ChevronDown
+                className={`ml-auto w-3.5 h-3.5 transition ${
+                  open.shared ? "rotate-180" : ""
+                }`}
+              />
             </button>
-            {expandedSections.includes("codename") && (
-              <div className="ml-2 space-y-0.5 mt-1">
-                <div className="sidebar-nav-item">
-                  <Share2 className="w-4 h-4" />
-                  <span className="text-sm">Shared with me</span>
-                  <ChevronDown className="w-3 h-3 ml-auto" />
+
+            {open.shared && (
+              <div className={treeGroup}>
+                <div className={`${item} ${treeItem}`}>Cargo2go</div>
+
+                <div className={`${item} ${treeItem}`}>
+                  Cloudz3r
+                  <span className="ml-auto min-w-[18px] h-[18px] rounded-md bg-rose-500 text-white text-[9px] flex items-center justify-center font-semibold">
+                    2
+                  </span>
                 </div>
-                <div className="sidebar-nav-item pl-6">
-                  <Box className="w-4 h-4 text-orange-400" />
-                  <span className="text-sm">Cargo2go</span>
+
+                <div className={`${item} ${treeItem}`}>Idioma</div>
+                <div className={`${item} ${treeItem}`}>Syllabites</div>
+                <div className={`${item} ${treeItem}`}>x-0b</div>
+              </div>
+            )}
+          </div>
+
+          {/* REPORTS */}
+          <div className={strongItem}>
+            Reports
+            <Plus className="ml-auto w-3.5 h-3.5 text-neutral-500" />
+          </div>
+
+          <div className={treeGroup}>
+            <button
+              onClick={() => toggle("reportsShared")}
+              className={`${item} font-semibold`}
+            >
+              Share with me
+              <ChevronDown
+                className={`ml-auto w-3.5 h-3.5 transition ${
+                  open.reportsShared ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {open.reportsShared && (
+              <div className={treeGroup}>
+                <div className={`${item} ${treeItem}`}>Deals by user</div>
+                <div className={`${item} ${treeItem}`}>Deal duration</div>
+              </div>
+            )}
+
+            <button
+              onClick={() => toggle("myReports")}
+              className={`${item} font-semibold`}
+            >
+              My reports
+              <ChevronDown
+                className={`ml-auto w-3.5 h-3.5 transition ${
+                  open.myReports ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {open.myReports && (
+              <div className={treeGroup}>
+                <div className={`${item} ${treeItem}`}>Emails received</div>
+                <div className={`${item} ${treeItem}`}>Deal duration</div>
+
+                <div className={`${item} ${treeItem} text-rose-600 font-semibold`}>
+                  New report
                 </div>
-                <div className="sidebar-nav-item pl-6">
-                  <div className="w-4 h-4 rounded bg-primary flex items-center justify-center">
-                    <span className="text-[7px] text-primary-foreground font-bold">C3</span>
-                  </div>
-                  <span className="text-sm">Cloudz3r</span>
-                  <span className="ml-auto w-4 h-4 rounded-full bg-primary text-primary-foreground text-[9px] flex items-center justify-center font-medium">2</span>
-                </div>
-                <div className="sidebar-nav-item pl-6">
-                  <Type className="w-4 h-4 text-blue-400" />
-                  <span className="text-sm">Idioma</span>
-                </div>
-                <div className="sidebar-nav-item pl-6">
-                  <Hash className="w-4 h-4 text-purple-400" />
-                  <span className="text-sm">Syllabites</span>
-                </div>
-                <div className="sidebar-nav-item pl-6">
-                  <FlaskConical className="w-4 h-4 text-teal-400" />
-                  <span className="text-sm">x-0b</span>
+
+                <div className={`${item} ${treeItem}`}>
+                  Analytics
+                  <span className="ml-auto min-w-[20px] h-[20px] rounded-md bg-rose-500 text-white text-[9px] flex items-center justify-center font-semibold">
+                    7
+                  </span>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Reports Section */}
-          <div className="pt-2">
-            <button
-              onClick={() => toggleSection("reports")}
-              className="flex items-center gap-2 px-2 py-1.5 w-full text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <span className="text-xs font-medium">Reports</span>
-              <Plus className="w-3 h-3 ml-auto" />
-            </button>
-            {expandedSections.includes("reports") && (
-              <div className="ml-2 space-y-0.5 mt-1">
-                <div className="sidebar-nav-item">
-                  <Share2 className="w-4 h-4" />
-                  <span className="text-sm">Share with me</span>
-                  <ChevronDown className="w-3 h-3 ml-auto" />
-                </div>
-                <div className="sidebar-nav-item pl-6">
-                  <Users className="w-4 h-4" />
-                  <span className="text-sm">Deals by user</span>
-                </div>
-                <div className="sidebar-nav-item pl-6">
-                  <Clock className="w-4 h-4" />
-                  <span className="text-sm">Deal duration</span>
-                </div>
-                
-                <button
-                  onClick={() => toggleSection("myReports")}
-                  className="sidebar-nav-item w-full"
-                >
-                  <FileText className="w-4 h-4" />
-                  <span className="text-sm">My reports</span>
-                  <ChevronDown className={`w-3 h-3 ml-auto transition-transform ${expandedSections.includes("myReports") ? "rotate-180" : ""}`} />
-                </button>
-                {expandedSections.includes("myReports") && (
-                  <div className="space-y-0.5">
-                    <div className="sidebar-nav-item pl-6">
-                      <Mail className="w-4 h-4" />
-                      <span className="text-sm">Emails received</span>
-                    </div>
-                    <div className="sidebar-nav-item pl-6">
-                      <Clock className="w-4 h-4" />
-                      <span className="text-sm">Deal duration</span>
-                    </div>
-                    <div className="sidebar-nav-item pl-6 text-primary">
-                      <Plus className="w-4 h-4" />
-                      <span className="text-sm font-medium">New report</span>
-                    </div>
-                    <div className="sidebar-nav-item pl-6">
-                      <BarChart3 className="w-4 h-4" />
-                      <span className="text-sm">Analytics</span>
-                      <span className="ml-auto w-5 h-5 rounded-md bg-primary text-primary-foreground text-[10px] flex items-center justify-center font-medium">7</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          {/* Manage Folders */}
-          <div className="sidebar-nav-item mt-4">
-            <Folder className="w-4 h-4" />
-            <span className="text-sm">Manage folders</span>
+          <div className="mt-4">
+            <div className={`${item} font-semibold`}>
+              <Folder className="w-3.5 h-3.5 text-neutral-500" />
+              Manage folders
+            </div>
           </div>
         </nav>
       </div>
+
+      <style>{`
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </aside>
   );
 };

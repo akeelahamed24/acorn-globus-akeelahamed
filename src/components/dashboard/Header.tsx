@@ -1,41 +1,43 @@
-import { Search, Menu, Plus, ChevronDown } from "lucide-react";
+import { Search, Menu, Plus } from "lucide-react";
 
 const Header = () => {
   return (
-    <header className="h-14 bg-card/80 backdrop-blur-sm flex items-center justify-between px-6 border-b border-border/50">
-      {/* Left - Logo */}
-      <div className="flex items-center gap-2">
-        <div className="w-8 h-8 bg-foreground rounded-lg flex items-center justify-center">
-          <span className="text-background font-bold text-sm">C</span>
-        </div>
-        <span className="text-foreground font-medium text-sm">Codename.com</span>
-        <ChevronDown className="w-4 h-4 text-muted-foreground" />
-      </div>
+    <header className="h-14 bg-transparent flex items-center justify-between px-6">
+      
+      <div className="w-full max-w-xl">
+  <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm">
+    <Search className="w-4 h-4 text-gray-400" />
+    <input
+      type="text"
+      placeholder='Try searching "insights"'
+      className="bg-transparent text-sm text-gray-700 outline-none w-full placeholder:text-gray-400"
+    />
+  </div>
+</div>
 
-      {/* Center - Search */}
-      <div className="flex-1 max-w-md mx-8">
-        <div className="flex items-center gap-2 bg-muted/50 rounded-full px-4 py-2">
-          <Search className="w-4 h-4 text-muted-foreground" />
-          <input
-            type="text"
-            placeholder='Try searching "insights"'
-            className="bg-transparent text-sm outline-none w-full placeholder:text-muted-foreground"
-          />
-        </div>
-      </div>
 
-      {/* Right - Actions */}
+      {/* Right actions */}
       <div className="flex items-center gap-3">
-        <button className="p-2 hover:bg-muted rounded-lg transition-colors">
-          <Menu className="w-5 h-5 text-muted-foreground" />
-        </button>
         
-        {/* Gradient Avatar */}
-        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-300 via-orange-400 to-rose-400" />
-        
-        {/* Add Button */}
-        <button className="w-8 h-8 bg-primary rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors">
-          <Plus className="w-5 h-5 text-primary-foreground" />
+        {/* Curved container for Menu + Profile */}
+        <div className="flex items-center gap-3 bg-white rounded-full px-3 py-1.5 shadow-sm">
+          <button className="p-1">
+            <Menu className="w-5 h-5 text-gray-800" />
+          </button>
+
+          {/* Profile image */}
+          <div className="w-8 h-8 rounded-full overflow-hidden">
+            <img
+              src="/profile.png"
+              alt="Profile"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Plus button (separate) */}
+        <button className="w-8 h-8 rounded-full bg-[#f43f5e] flex items-center justify-center">
+          <Plus className="w-5 h-5 text-white" />
         </button>
       </div>
     </header>

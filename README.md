@@ -1,57 +1,125 @@
-# Welcome to your project
+# Acorn Globus Full Stack Developer Intern Assignment
 
-## Project info
+## Dashboard UI Development - Pixel Perfect Recreation
 
-## How can I edit this code?
+This project is my submission for the Full Stack Developer Intern position at Acorn Globus. The assignment required recreating a provided dashboard design with pixel-perfect accuracy using HTML, CSS, and JavaScript.
 
-There are several ways of editing your application.
+### 🎯 Assignment Objective
 
-**Use your preferred IDE**
+Recreate the provided dashboard design with pixel-perfect accuracy, focusing on:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes.
+- Layout and spacing
+- Typography and font sizes  
+- Colors and gradients
+- Icons and visual elements
+- Hover states and micro-interactions
+- Desktop responsiveness (minimum 1280px width)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 🖼️ Dashboard Design
 
-Follow these steps:
+![Dashboard UI](public/dashboard.png)
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### 🛠️ Tech Stack
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- **Frontend Framework**: React with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS with shadcn/ui components
+- **Charting**: Recharts for data visualization
+- **State Management**: React hooks and context
 
-# Step 3: Install the necessary dependencies.
-npm i
+### 📁 Project Structure
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+├── components/
+│   ├── dashboard/
+│   │   ├── Header.tsx           # Main header with user info
+│   │   ├── Sidebar.tsx          # Navigation sidebar
+│   │   ├── DashboardHeader.tsx  # Dashboard title and filters
+│   │   ├── RevenueHero.tsx      # Revenue summary cards
+│   │   ├── ProgressSection.tsx  # Progress indicators
+│   │   ├── PlatformFilters.tsx  # Platform selection filters
+│   │   ├── BarChartSection.tsx  # Main revenue chart
+│   │   ├── QuickMetrics.tsx     # Quick performance metrics
+│   │   ├── PerformanceTable.tsx # Detailed performance data
+│   │   └── DeepDiveAnalytics.tsx # Advanced analytics section
+│   └── ui/                      # Reusable UI components
+└── pages/
+    └── Index.tsx               # Main application page
 ```
 
-**Edit a file directly in GitHub**
+### 🎨 Design Implementation
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The implementation focuses on pixel-perfect accuracy with attention to:
 
-**Use GitHub Codespaces**
+- **Typography**: Precise font sizes, weights, and spacing
+- **Colors**: Exact color matching from the design reference
+- **Layout**: Grid-based layout ensuring proper alignment
+- **Interactions**: Smooth hover effects and transitions
+- **Responsiveness**: Clean desktop experience with 1280px+ support
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### 🚀 Features Implemented
 
-## What technologies are used for this project?
+- **Revenue Overview**: Hero section with key metrics
+- **Progress Tracking**: Visual progress indicators
+- **Platform Filtering**: Interactive platform selection
+- **Data Visualization**: Bar charts for revenue analysis
+- **Performance Metrics**: Quick stats and detailed tables
+- **Deep Analytics**: Advanced data breakdowns
 
-This project is built with:
+### 📱 Responsive Design
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Desktop-optimized (1280px minimum width)
+- Flexible grid layout
+- Proper spacing and typography scaling
+- Touch-friendly interactions where applicable
 
-## How can I deploy this project?
+### 🔧 Development Setup
 
-You can deploy this project using various platforms like Vercel, Netlify, or any other hosting service that supports static sites.
+```bash
+# Clone the repository
+git clone <repository-url>
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+### 📋 Code Quality
+
+- Clean, well-structured TypeScript code
+- Proper component organization
+- Consistent naming conventions
+- Comprehensive comments for complex logic
+- Accessibility considerations
+
+### 🎯 What This Assignment Demonstrates
+
+This project showcases my ability to:
+
+- Translate design mockups into functional, pixel-perfect interfaces
+- Work with modern React and TypeScript
+- Implement responsive layouts with Tailwind CSS
+- Create interactive data visualizations
+- Write clean, maintainable code
+- Pay attention to detail in UI implementation
+
+### 📞 About the Internship
+
+This assignment was part of the selection process for Acorn Globus's Full Stack Developer Intern position. While the assignment focused on frontend development, the internship offers hands-on experience with:
+
+- Backend development (Node.js / Python / Ruby On Rails)
+- Database management
+- API development
+- Full stack project work
+
+The frontend skills demonstrated here are considered essential for any full stack developer role.
+
+---
+
+**Note**: This is a frontend-focused assignment submission. Quality and attention to detail were prioritized over speed of completion.

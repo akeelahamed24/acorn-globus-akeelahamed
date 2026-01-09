@@ -14,7 +14,7 @@ import { Download, Share } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen dashboard-gradient">
       <Sidebar />
       
       <div className="flex-1 flex flex-col overflow-hidden">

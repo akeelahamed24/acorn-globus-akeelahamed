@@ -10,13 +10,16 @@ import PlatformFilters from '@/components/dashboard/PlatformFilters';
 import BarChartSection from '@/components/dashboard/BarChartSection';
 import PerformanceTable from '@/components/dashboard/PerformanceTable';
 import DeepDiveAnalytics from '@/components/dashboard/DeepDiveAnalytics';
+import TopHeader from "@/components/dashboard/TopHeader";
+
+
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState('Revenue');
-  const [expandedSalesId, setExpandedSalesId] = useState<number | null>(null);
+  const [expandedSalesId, setExpandedSalesId] = useState<string | null>(null);
 
-  const handleSalesRowClick = (index: number) => {
-    setExpandedSalesId(expandedSalesId === index ? null : index);
+  const handleSalesRowClick = (name: string) => {
+    setExpandedSalesId(expandedSalesId === name ? null : name);
   };
 
   const handleTabChange = (tab: string) => {
@@ -34,13 +37,14 @@ const App: React.FC = () => {
           {/* Header */}
           <Header />
           
-          {/* Dashboard Content - White container with subtle shadow */}
+          {/* Dashboard Content */}
           <main className="flex-1 overflow-y-auto p-4 lg:p-8">
             <div className="max-w-[1600px] mx-auto">
               {/* White bordered container */}
               <div className="bg-white border border-zinc-200 rounded-[28px] lg:rounded-[36px] shadow-sm p-6 lg:p-8">
                 <div className="space-y-8">
-                  
+                  <TopHeader />
+
                   {/* Title and Controls */}
                   <DashboardHeader />
 
@@ -64,21 +68,40 @@ const App: React.FC = () => {
                   {/* Segmented Progress Row */}
                   <ProgressSection onDetailsClick={() => console.log('Details clicked')} />
 
-                  {/* Middle Content Grid */}
-                  <section className="grid grid-cols-1 xl:grid-cols-12 gap-6">
-                    <PlatformFilters onPlatformClick={(platform) => console.log('Platform clicked:', platform)} />
-                    <BarChartSection onFilterChange={(filter) => console.log('Filter changed:', filter)} />
-                    <PerformanceTable 
-                      expandedSalesId={expandedSalesId}
-                      onSalesRowClick={handleSalesRowClick}
-                    />
+                  {/* Middle Content Grid - Equal sizing layout */}
+                  <section className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    {/* Left Container */}
+                    <div className="lg:col-span-7 space-y-6">
+                      {/* PlatformFilters and BarChartSection side by side - equal size */}
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        {/* PlatformFilters - equal width */}
+                        <div className="w-full">
+                          <PlatformFilters onPlatformClick={(platform) => console.log('Platform clicked:', platform)} />
+                        </div>
+                        
+                        {/* BarChartSection - equal width */}
+                        <div className="w-full">
+                          <BarChartSection onFilterChange={(filter) => console.log('Filter changed:', filter)} />
+                        </div>
+                      </div>
+                      
+                      {/* DeepDiveAnalytics below them - full width */}
+                      <div className="w-full">
+                        <DeepDiveAnalytics 
+                          activeTab={activeTab}
+                          onTabChange={handleTabChange}
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Right Container - PerformanceTable */}
+                    <div className="lg:col-span-5">
+                      <PerformanceTable 
+                        expandedSalesId={expandedSalesId}
+                        onSalesRowClick={handleSalesRowClick}
+                      />
+                    </div>
                   </section>
-
-                  {/* Bottom Section: Deep Dive Analytics */}
-                  <DeepDiveAnalytics 
-                    activeTab={activeTab}
-                    onTabChange={handleTabChange}
-                  />
                 </div>
               </div>
             </div>

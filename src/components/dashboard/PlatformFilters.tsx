@@ -1,6 +1,5 @@
-import React from 'react';
-import { Filter, ChevronDown } from 'lucide-react';
-import { PLATFORMS } from './constants';
+import React from "react";
+import { PLATFORMS } from "./constants";
 
 interface PlatformFiltersProps {
   onPlatformClick?: (platform: string) => void;
@@ -9,61 +8,78 @@ interface PlatformFiltersProps {
 const PlatformFilters: React.FC<PlatformFiltersProps> = ({ onPlatformClick }) => {
   return (
     <div className="xl:col-span-3">
-      <div className="bg-white border border-zinc-100 rounded-[28px] shadow-sm h-[520px] w-full overflow-hidden">
+      <div className="bg-zinc-100 border border-zinc-200 rounded-[28px] shadow-sm h-[520px] w-full overflow-hidden">
+        
+        {/* Inner layout MUST stay the same */}
         <div className="p-6 h-full flex flex-col">
+          
+          {/* Header (fixed height) */}
           <div className="flex items-center justify-between mb-6 shrink-0">
-            <div className="flex items-center gap-2">
-              <div className="p-2 bg-zinc-50 rounded-xl">
-                <Filter size={18} className="text-zinc-400" />
-              </div>
-              <span className="text-sm font-bold text-zinc-700">Filters</span>
-            </div>
-            <button className="flex items-center gap-1 text-zinc-400 text-xs font-semibold hover:text-zinc-600">
-              More <ChevronDown size={12} />
+            <button className="flex items-center gap-1 text-zinc-600 hover:text-zinc-900">
+              <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+              <svg className="w-3 h-3" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 5l3 3 3-3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+
+            <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 rounded-lg">
+              Filters
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
             </button>
           </div>
-          
-          {/* Platforms list with exact height to match PerformanceTable */}
+
+          {/* List area (flex-1 like old component) */}
           <div className="flex-1 min-h-0 flex flex-col justify-center">
             <div className="space-y-4">
-              {PLATFORMS.map((platform, i) => (
-                <div 
-                  key={i} 
-                  className="flex items-center gap-3 p-3 rounded-2xl hover:bg-zinc-50 transition-colors cursor-pointer group"
+              {PLATFORMS.map((platform) => (
+                <div
+                  key={platform.name}
                   onClick={() => onPlatformClick?.(platform.name)}
+                  className="flex items-center justify-between px-5 py-4 bg-white rounded-2xl hover:bg-zinc-50 cursor-pointer transition shadow-sm border border-zinc-100"
                 >
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg shadow-sm shrink-0" 
-                       style={{ backgroundColor: platform.color + '15', color: platform.color }}>
-                    {platform.icon}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold text-zinc-700 truncate">{platform.name}</p>
-                    <p className="text-xs font-medium text-zinc-400">{platform.percentage}</p>
-                  </div>
-                  <div className="text-right shrink-0">
-                    <p className="text-sm font-bold text-zinc-900">{platform.value}</p>
-                    <div className="w-16 h-1.5 bg-zinc-100 rounded-full overflow-hidden mt-1">
-                      <div 
-                        className="h-full rounded-full" 
-                        style={{ 
-                          width: platform.percentage.replace('%', '') + '%',
-                          backgroundColor: platform.color 
-                        }}
+                  {/* Left */}
+                  <div className="flex items-center gap-4 min-w-0">
+                    {/* BRAND ICONS — BIGGER */}
+                    <div className="w-12 h-12 flex items-center justify-center shrink-0">
+                      <img
+                        src={platform.icon}
+                        alt={platform.name}
+                        className="w-10 h-10"
                       />
                     </div>
+                    <span className="text-base font-medium text-zinc-700 truncate">
+                      {platform.name}
+                    </span>
+                  </div>
+
+                  {/* Right */}
+                  <div className="flex items-center gap-4 shrink-0">
+                    <span className="text-base font-bold text-zinc-900">
+                      {platform.value}
+                    </span>
+                    <span className="text-sm font-semibold text-zinc-500 min-w-[45px] text-right">
+                      {platform.percentage}
+                    </span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          
-          {/* Matching footer */}
+
+          {/* Footer (fixed like old component) */}
           <div className="pt-4 border-t border-zinc-100 mt-4 shrink-0">
-            <p className="text-sm font-bold text-zinc-700">Platform performance</p>
-            <button className="flex items-center gap-1 text-zinc-400 text-xs font-semibold hover:text-zinc-600">
-              by engagement <ChevronDown size={10} />
-            </button>
+            <p className="text-sm font-bold text-zinc-700">
+              Platform performance
+            </p>
+            <p className="text-xs font-semibold text-zinc-400">
+              by engagement
+            </p>
           </div>
+
         </div>
       </div>
     </div>

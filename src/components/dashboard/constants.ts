@@ -15,39 +15,40 @@ export const USERS = [
 
 export const PLATFORMS = [
   {
-    name: 'Google',
-    value: '$18,552',
-    percentage: '39.63%',
-    color: '#4285F4',
-    icon: '🔍'
+    name: "Dribbble",
+    value: "$227,459",
+    percentage: "43%",
+    icon: "/dribbble.png",
+    color: "#EA4C89",
   },
   {
-    name: 'Dribbble',
-    value: '$156,841',
-    percentage: '29.65%',
-    color: '#EA4C89',
-    icon: '🏀'
+    name: "Instagram",
+    value: "$142,823",
+    percentage: "27%",
+    icon: "/instagram.png",
+    color: "#E4405F",
   },
   {
-    name: 'Instagram',
-    value: '$117,115',
-    percentage: '22.14%',
-    color: '#E4405F',
-    icon: '📸'
+    name: "Behance",
+    value: "$89,935",
+    percentage: "11%",
+    icon: "/behance.png",
+    color: "#1769FF",
   },
   {
-    name: 'Other',
-    value: '$45,386',
-    percentage: '8.58%',
-    color: '#9CA3AF',
-    icon: '🔗'
-  }
+    name: "Google",
+    value: "$37,028",
+    percentage: "7%",
+    icon: "/google.png",
+    color: "#4285F4",
+  },
 ];
+
 
 export const SALES_DATA = [
   {
     name: 'Eren',
-    avatar: 'https://images.unsplash.com/photo-1494790108782-342624621847?w=150&h=150&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
     amount: '$209,633',
     leads: '256',
     kpi: '1.3',
@@ -98,3 +99,4 @@ export const DYNAMIC_CHART_DATA = [
   { week: 'W12', value: 42000, platform: 'Instagram' },
   { week: 'W13', value: 45000, platform: 'Google' }
 ];
+

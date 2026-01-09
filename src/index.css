@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 350 30% 96%;
+    --background: 0 6% 90%;
     --foreground: 224 71% 4%;
 
     --card: 0 0% 100%;
@@ -18,10 +18,10 @@
     --primary: 4 84% 67%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 350 20% 95%;
+    --secondary: 0 7% 88%;
     --secondary-foreground: 224 71% 4%;
 
-    --muted: 350 15% 94%;
+    --muted: 0 8% 86%;
     --muted-foreground: 220 9% 46%;
 
     --accent: 4 84% 67%;
@@ -57,9 +57,9 @@
     --chart-bar-3: 4 84% 82%;
     --chart-line: 4 84% 67%;
 
-    --gradient-start: 350 40% 97%;
-    --gradient-mid: 340 25% 95%;
-    --gradient-end: 330 20% 93%;
+    --gradient-start: 0 6% 90%;
+    --gradient-mid: 0 7% 88%;
+    --gradient-end: 0 8% 86%;
   }
 
   .dark {
@@ -95,13 +95,18 @@
       font-family: 'Inter', sans-serif;
       margin: 0;
       height: 100vh;
-      background-color: #E2E2E4; /* Fallback color */
+
+      /* Fallback */
+      background-color: hsl(0 8% 86%);
+
+      /* Pixel-matched dashboard background */
       background: radial-gradient(
-        circle at center,
-        #F3F3F3 0%,
-        #E2E2E4 60%,
-        #DAD9DD 100%
+        ellipse at center,
+        hsl(0 6% 90%) 0%,
+        hsl(0 7% 88%) 40%,
+        hsl(0 8% 86%) 100%
       );
+
       background-attachment: fixed;
     }
 }
@@ -144,11 +149,9 @@
   .dashboard-gradient {
     background: linear-gradient(
       135deg,
-      hsl(350 40% 97%) 0%,
-      hsl(340 30% 95%) 25%,
-      hsl(335 25% 94%) 50%,
-      hsl(330 20% 93%) 75%,
-      hsl(320 18% 92%) 100%
+      hsl(0 6% 92%) 0%,
+      hsl(0 7% 90%) 40%,
+      hsl(0 8% 88%) 100%
     );
   }
 

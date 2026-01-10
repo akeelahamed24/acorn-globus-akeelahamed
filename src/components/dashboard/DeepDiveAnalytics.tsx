@@ -54,9 +54,9 @@ const DeepDiveAnalytics: React.FC<DeepDiveAnalyticsProps> = ({
         
         <div className="flex h-[320px]">
           
-          {/* LEFT PINK PANEL */}
+          {/* LEFT PINK PANEL - rounded on right side only */}
           <div 
-            className="w-[180px] flex-shrink-0 p-5 flex relative overflow-hidden"
+            className="w-[180px] flex-shrink-0 p-5 flex relative overflow-hidden rounded-r-[24px]"
             style={{ backgroundColor: brandPink }}
           >
             {/* Subtle decorative curves */}

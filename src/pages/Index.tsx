@@ -17,6 +17,7 @@ import TopHeader from "@/components/dashboard/TopHeader";
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState('Revenue');
   const [expandedSalesId, setExpandedSalesId] = useState<string | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleSalesRowClick = (name: string) => {
     setExpandedSalesId(expandedSalesId === name ? null : name);
@@ -28,28 +29,42 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#fafafa]">
-      <div className="flex h-screen">
+      <div className="flex h-screen relative">
+        {/* Mobile sidebar overlay */}
+        {sidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+        
         {/* Sidebar */}
-        <Sidebar />
+        <div className={`
+          fixed lg:relative inset-y-0 left-0 z-50
+          transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0
+          transition-transform duration-300 ease-in-out
+        `}>
+          <Sidebar />
+        </div>
         
         {/* Main Content */}
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="flex-1 flex flex-col overflow-hidden w-full">
           {/* Header */}
-          <Header />
+          <Header onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
           
           {/* Dashboard Content */}
-          <main className="flex-1 overflow-y-auto p-4 lg:p-8">
+          <main className="flex-1 overflow-y-auto p-3 sm:p-4 lg:p-8">
             <div className="max-w-[1600px] mx-auto">
               {/* White bordered container */}
-              <div className="bg-white border border-zinc-200 rounded-[28px] lg:rounded-[36px] shadow-sm p-6 lg:p-8">
-                <div className="space-y-8">
+              <div className="bg-white border border-zinc-200 rounded-[20px] sm:rounded-[28px] lg:rounded-[36px] shadow-sm p-4 sm:p-6 lg:p-8">
+                <div className="space-y-6 lg:space-y-8">
                   <TopHeader />
 
                   {/* Title and Controls */}
                   <DashboardHeader />
 
                   {/* Top Stats and Hero Row */}
-                  <section className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                  <section className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
                     <RevenueHero 
                       revenue="$528,976.82"
                       percentage="7.9%"
@@ -65,15 +80,17 @@ const App: React.FC = () => {
                     />
                   </section>
 
-                  {/* Segmented Progress Row */}
-                  <ProgressSection onDetailsClick={() => console.log('Details clicked')} />
+                  {/* Segmented Progress Row - Hidden on mobile, scrollable on tablet */}
+                  <div className="hidden sm:block overflow-x-auto">
+                    <ProgressSection onDetailsClick={() => console.log('Details clicked')} />
+                  </div>
 
                   {/* Middle Content Grid - Equal sizing layout */}
-                  <section className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                  <section className="grid grid-cols-1 xl:grid-cols-12 gap-4 sm:gap-6">
                     {/* Left Container */}
-                    <div className="lg:col-span-7 space-y-6">
+                    <div className="xl:col-span-7 space-y-4 sm:space-y-6">
                       {/* PlatformFilters and BarChartSection side by side - equal size */}
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                         {/* PlatformFilters - equal width */}
                         <div className="w-full">
                           <PlatformFilters onPlatformClick={(platform) => console.log('Platform clicked:', platform)} />
@@ -86,7 +103,7 @@ const App: React.FC = () => {
                       </div>
                       
                       {/* DeepDiveAnalytics below them - full width */}
-                      <div className="w-full">
+                      <div className="w-full overflow-x-auto">
                         <DeepDiveAnalytics 
                           activeTab={activeTab}
                           onTabChange={handleTabChange}
@@ -95,7 +112,7 @@ const App: React.FC = () => {
                     </div>
                     
                     {/* Right Container - PerformanceTable */}
-                    <div className="lg:col-span-5">
+                    <div className="xl:col-span-5">
                       <PerformanceTable 
                         expandedSalesId={expandedSalesId}
                         onSalesRowClick={handleSalesRowClick}

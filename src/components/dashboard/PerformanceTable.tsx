@@ -113,10 +113,10 @@ interface PerformanceTableProps {
 const PerformanceTable: React.FC<PerformanceTableProps> = ({ expandedSalesId, onSalesRowClick }) => {
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-8 font-sans bg-white min-h-screen"> {/* Changed from bg-zinc-50 to bg-white */}
+    <div className="w-full max-w-4xl mx-auto p-3 sm:p-6 lg:p-8 font-sans bg-white min-h-0 lg:min-h-screen">
       
-      {/* Header Row */}
-      <div className="grid grid-cols-12 gap-4 px-6 mb-3 text-[11px] font-bold text-zinc-400 uppercase tracking-wide">
+      {/* Header Row - hidden on mobile */}
+      <div className="hidden md:grid grid-cols-12 gap-4 px-6 mb-3 text-[11px] font-bold text-zinc-400 uppercase tracking-wide">
         <div className="col-span-3">Sales</div>
         <div className="col-span-2">Revenue</div>
         <div className="col-span-2 text-center">Leads</div>
@@ -133,14 +133,35 @@ const PerformanceTable: React.FC<PerformanceTableProps> = ({ expandedSalesId, on
             <div 
               key={person.name}
               onClick={() => onSalesRowClick?.(person.name)}
-              className={`relative rounded-[32px] transition-all duration-300 cursor-pointer overflow-hidden ${
+              className={`relative rounded-[20px] sm:rounded-[32px] transition-all duration-300 cursor-pointer overflow-hidden ${
                 isExpanded 
-                  ? 'bg-gradient-to-br from-white via-[#fff9fc] to-[#fceef5] shadow-lg ring-1 ring-pink-50/50 p-6' 
-                  : 'bg-white hover:bg-zinc-50 shadow-sm p-4 px-6'
+                  ? 'bg-gradient-to-br from-white via-[#fff9fc] to-[#fceef5] shadow-lg ring-1 ring-pink-50/50 p-4 sm:p-6' 
+                  : 'bg-white hover:bg-zinc-50 shadow-sm p-3 sm:p-4 px-3 sm:px-6'
               }`}
             >
-              {/* Row Content */}
-              <div className="grid grid-cols-12 gap-4 items-center">
+              {/* Row Content - Mobile layout */}
+              <div className="md:hidden">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <img src={person.avatar} alt={person.name} className="w-8 h-8 rounded-full bg-zinc-100 object-cover flex-shrink-0" />
+                    <div className="min-w-0">
+                      <span className="font-bold text-zinc-700 text-sm block truncate">{person.name}</span>
+                      <span className="text-xs text-zinc-500">{person.amount}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <span className="bg-zinc-800 text-white text-[10px] font-bold px-2 py-1 rounded-full">
+                      {person.leads}
+                    </span>
+                    <button className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${isExpanded ? 'bg-rose-500 text-white rotate-180' : 'bg-transparent text-zinc-400'}`}>
+                      <ChevronDown size={16} strokeWidth={2.5} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Row Content - Desktop layout */}
+              <div className="hidden md:grid grid-cols-12 gap-4 items-center">
                 
                 {/* 1. Name & Avatar */}
                 <div className="col-span-3 flex items-center gap-3">

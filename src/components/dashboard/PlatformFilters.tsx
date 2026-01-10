@@ -8,7 +8,7 @@ interface PlatformFiltersProps {
 const PlatformFilters: React.FC<PlatformFiltersProps> = ({ onPlatformClick }) => {
   return (
     <div className="xl:col-span-3">
-      <div className="bg-zinc-100 border border-zinc-200 rounded-[28px] shadow-sm h-[520px] w-full overflow-hidden">
+      <div className="bg-zinc-100 border border-zinc-200 rounded-[20px] sm:rounded-[28px] shadow-sm h-[420px] sm:h-[520px] w-full overflow-hidden">
         
         {/* Inner layout MUST stay the same */}
         <div className="p-6 h-full flex flex-col">

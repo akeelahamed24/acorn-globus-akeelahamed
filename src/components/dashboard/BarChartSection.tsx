@@ -24,7 +24,7 @@ const BarChartSection: React.FC<BarChartSectionProps> = ({ onFilterChange }) => 
 
   return (
     <div className="xl:col-span-3">
-      <div className="bg-zinc-100 border border-zinc-200 rounded-[28px] h-[520px] shadow-sm">
+      <div className="bg-zinc-100 border border-zinc-200 rounded-[20px] sm:rounded-[28px] h-[420px] sm:h-[520px] shadow-sm">
         <div className="p-6 h-full flex flex-col">
 
           {/* Header */}

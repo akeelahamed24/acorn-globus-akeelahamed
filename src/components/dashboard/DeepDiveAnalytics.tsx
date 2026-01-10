@@ -26,10 +26,10 @@ const DeepDiveAnalytics: React.FC<DeepDiveAnalyticsProps> = ({
 
   return (
     // Outer container: White
-    <div className="flex justify-center bg-white py-8 font-sans">
+    <div className="flex justify-center bg-white py-4 sm:py-8 font-sans">
       
       {/* Main Component Card: Grey #F4F4F5 */}
-      <div className="w-full max-w-[900px] bg-[#F4F4F5] rounded-[32px] border border-gray-200 shadow-sm px-8 py-6 relative">
+      <div className="w-full max-w-[900px] min-w-[600px] bg-[#F4F4F5] rounded-[20px] sm:rounded-[32px] border border-gray-200 shadow-sm px-4 sm:px-8 py-4 sm:py-6 relative">
         
         {/* --- HEADER --- */}
         <div className="flex items-center justify-between mb-6">

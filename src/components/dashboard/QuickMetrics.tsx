@@ -18,7 +18,7 @@ const QuickMetrics: React.FC<QuickMetricsProps> = ({
   value,
 }) => {
   return (
-    <div className="lg:col-span-7 grid grid-cols-[1.3fr_1.3fr_1fr_1fr_1fr] gap-3">
+    <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-[1.3fr_1.3fr_1fr_1fr_1fr] gap-2 sm:gap-3">
       
       {/* Top sales */}
       <div className="bg-white border border-zinc-200 rounded-xl px-4 py-4 flex flex-col">

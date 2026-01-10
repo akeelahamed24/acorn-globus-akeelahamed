@@ -35,7 +35,7 @@ const Sidebar = () => {
     "relative pl-7 font-medium before:absolute before:left-3 before:top-1/2 before:w-2 before:h-px before:bg-neutral-400";
 
   return (
-    <aside className="flex h-screen w-[320px] bg-transparent">
+    <aside className="flex h-screen w-[280px] lg:w-[320px] bg-white lg:bg-transparent">
       {/* ICON BAR */}
       <div className="w-14 flex flex-col items-center py-4">
         <div className="w-9 h-9 rounded-full bg-black text-white flex items-center justify-center font-semibold mb-6">
